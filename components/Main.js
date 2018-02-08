@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default class Main extends React.Component {
+import Home from './Home';
+
+export default class Main extends Component {
     render() {
         return (
             <View>
-                <Text>Hello from Main.js</Text>
+                <Home />
             </View>
         )
     }
