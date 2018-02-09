@@ -1,30 +1,33 @@
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
-// import { Header } from 'react-native-elements'
+import { StyleSheet, View, Text } from 'react-native';
+import { DrawerNavigator } from 'react-navigation';
 
-import Main from './components/Main';
-import Header from './components/Header';
+// Bringing in the icons to use
+import Icon from 'react-native-vector-icons/MaterialIcons';
+
+
+import Home from './components/Home';
+import AddItem from './components/AddItem';
 
 export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Header />
-        {/* <Header
-          leftComponent={{ icon: 'menu', color: '#f8f8f8' }}
-          centerComponent={{ text: 'Wish List', style: { color: '#f8f8f8', fontSize: 20 } }}
-          rightComponent={{ icon: 'add', color: '#f8f8f8' }}
-          outerContainerStyles={{ backgroundColor: '#2692FF' }}
-        /> */}
-        <Main />
+        <MyApp />
+
       </View>
     );
   }
 }
 
+const MyApp = DrawerNavigator({
+  Home: { screen: Home },
+  AddItem: { screen: AddItem },
+})
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#EDEDED'
-  },
+  }
 });

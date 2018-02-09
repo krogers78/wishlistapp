@@ -4,7 +4,7 @@ import { StyleSheet, Text } from 'react-native';
 export default class Heading extends Component {
     render() {
         return (
-            <Text style={styles.heading}>{this.props.content}</Text>
+            <Text style={styles.heading}>{this.props.text}</Text>
         )
     }
 }

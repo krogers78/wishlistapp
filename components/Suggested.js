@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, Text, Image, StyleSheet } from 'react-native';
 
-import Title from './typography/Title';
+import Descriptor from './typography/Descriptor';
 
 export default class Suggested extends Component {
     render() {
@@ -9,16 +9,16 @@ export default class Suggested extends Component {
             <View>
                 {/* Separate each item. WILL LATER BE A LOOP */}
                 <View style={styles.fl}>
-                    <Image source={require('../assets/images/bobross.jpg')} style={{ width: 140, height: 180 }} />
-                    <Title text='Funko Pop TV Bob Ross with Raccoon (Styles May Vary) Collectible Figure' />
+                    <Image source={require('../assets/images/bobross.jpg')} style={{ width: 120, height: 160 }} />
+                    <Descriptor text='Funko Pop TV Bob Ross with Raccoon (Styles May Vary) Collectible Figure' />
                 </View>
                 <View style={styles.fl}>
-                    <Image source={require('../assets/images/dracomalfoy.jpg')} style={{ width: 140, height: 180 }} />
-                    <Title text='Funko POP Movies: Harry Potter Action Figure - Draco Malfoy' />
+                    <Image source={require('../assets/images/dracomalfoy.jpg')} style={{ width: 120, height: 160 }} />
+                    <Descriptor text='Funko POP Movies: Harry Potter Action Figure - Draco Malfoy' />
                 </View>
                 <View style={styles.fl}>
-                    <Image source={require('../assets/images/bobross2.jpg')} style={{ width: 140, height: 180 }} />
-                    <Title text='Funko Pop TV Bob Ross in Overalls Collectible Figure' />
+                    <Image source={require('../assets/images/bobross2.jpg')} style={{ width: 120, height: 160 }} />
+                    <Descriptor text='Funko Pop TV Bob Ross in Overalls Collectible Figure' />
                 </View>
             </View>
         )
