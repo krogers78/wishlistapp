@@ -16,7 +16,7 @@ export default class Header extends Component {
                     />
                 </TouchableOpacity>
 
-                <Text style={styles.text}>Wish List</Text>
+                <Text style={styles.text}>{this.props.title}</Text>
                 <TouchableOpacity onPress={() => this.props.navigation.navigate('AddItem')}>
                     <Icon
                         name='add'

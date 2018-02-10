@@ -10,11 +10,11 @@ export default class Home extends Component {
         return(
             <View>
                 {/* Header Component */}    
-                <Header navigation={this.props.navigation} />
+                <Header navigation={this.props.navigation} title="Home" />
                 {/* Wishlists and Suggested Components */}
                 {/* Flat list */}
                 <ScrollView style={styles.bottom}>
-                    <Wishlists />
+                    <Wishlists navigation={this.props.navigation} />
                     <Suggested />                    
                 </ScrollView>
             </View>

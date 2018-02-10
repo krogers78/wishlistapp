@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import Heading from './typography/Heading';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -9,16 +9,16 @@ export default class Wishlists extends Component {
     render() {
         return(
             <View>
-                <Heading text="Wishlist" />
+                <Heading text="Wish List" />
 
-                <View style={styles.group}>
+                <TouchableOpacity style={styles.group} onPress={() => this.props.navigation.navigate('WishList')}>
                     <Icon
                         name='star-circle'
                         size={80}
                         color='#6AB4FF'
                     />
                     <Text style={styles.list}>General List</Text>
-                </View>
+                </TouchableOpacity>
             </View>
         )
     }

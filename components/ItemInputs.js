@@ -23,7 +23,8 @@ export default class AddItem extends Component {
                 <Heading text="Price" />
                 <TextInput style={styles.input}
                     placeholder="$10.99"
-                    value="$9.11"
+                    value="8.77"
+                    keyboardType="numeric"
                 />
                 {/* LOCATION */}
                 <Heading text="Location" />

@@ -12,7 +12,7 @@ export default class AddItem extends Component {
         return(
             <View>
                 {/* Header Component */}
-                <Header navigation={this.props.navigation} />
+                <Header navigation={this.props.navigation} title="Add Item" />
                 {/* Inputs Component */}
                 <ItemInputs />
             </View>
