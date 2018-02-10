@@ -11,8 +11,9 @@ export default class AddItem extends Component {
     render() {
         return(
             <View>
+                {/* Header Component */}
                 <Header navigation={this.props.navigation} />
-
+                {/* Inputs Component */}
                 <ItemInputs />
             </View>
         )

@@ -12,10 +12,7 @@ import AddItem from './components/AddItem';
 export default class App extends Component {
   render() {
     return (
-      <View style={styles.container}>
         <MyApp />
-
-      </View>
     );
   }
 }
@@ -23,7 +20,7 @@ export default class App extends Component {
 const MyApp = DrawerNavigator({
   Home: { screen: Home },
   AddItem: { screen: AddItem },
-})
+});
 
 const styles = StyleSheet.create({
   container: {

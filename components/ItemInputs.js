@@ -60,7 +60,8 @@ const styles = StyleSheet.create({
     image: {
         width: 180,
         height: 220,
-        alignSelf: 'center'
+        alignSelf: 'center',
+        resizeMode: 'contain',
     },
     bottom: {
         marginBottom: 100
