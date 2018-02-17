@@ -36,7 +36,6 @@ export default class App extends Component {
     if (this.state.loaded) {
       return (
         <View style={styles.container}>
-          {console.log('FROM JSX', this.state.items)}
           <MyApp screenProps={this.state.items} />
         </View>
       )
@@ -50,8 +49,6 @@ const MyApp = DrawerNavigator({
   AddItem: { screen: AddItem },
   WishList: { screen: SingleList },
   Security: { screen: Security },
-}, {
-
 });
 
 const styles = StyleSheet.create({
