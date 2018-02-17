@@ -5,22 +5,51 @@ import { DrawerNavigator } from 'react-navigation';
 // Bringing in the icons to use
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import Home from './components/Home';
-import AddItem from './components/AddItem';
-import SingleList from './components/SingleList';
+
+import Home from './components/screens/Home';
+import AddItem from './components/screens/AddItem';
+import SingleList from './components/screens/SingleList';
+import Security from './components/Security';
 
 export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loaded: false,
+      items: []
+    }
+  }
+
+  componentWillMount() {
+    this.fetchData();
+  }
+  fetchData = async () => {
+    const apiUrl = 'http://localhost:3000/api/list';
+    const options = { method: 'GET' }
+
+
+    const response = await fetch(apiUrl, options);
+    const json = await response.json();
+    this.setState({items:json, loaded:true})
+  }
   render() {
-    return (
-        <MyApp />
-    );
+    if (this.state.loaded) {
+      return (
+        <View style={styles.container}>
+          {console.log('FROM JSX', this.state.items)}
+          <MyApp screenProps={this.state.items} />
+        </View>
+      )
+    }
+    return <Text>testing</Text>
   }
 }
 
 const MyApp = DrawerNavigator({
   Home: { screen: Home },
   AddItem: { screen: AddItem },
-  WishList: { screen: SingleList }
+  WishList: { screen: SingleList },
+  Security: { screen: Security },
 }, {
 
 });
@@ -28,6 +57,6 @@ const MyApp = DrawerNavigator({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#EDEDED'
+    backgroundColor: '#EDEDED',
   }
 });

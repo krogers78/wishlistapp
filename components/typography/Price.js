@@ -4,7 +4,7 @@ import { Text, StyleSheet, Platform } from 'react-native';
 export default class Price extends Component {
     render() {
         return (
-            <Text style={styles.description}>{this.props.text}</Text>
+            <Text style={styles.description}>${this.props.text}</Text>
         )
     }
 }

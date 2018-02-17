@@ -39,7 +39,7 @@ export default class AddItem extends Component {
                     value="General"
                 />
                 {/* BUTTON */}
-                <TouchableOpacity onPress={() => console.log('It Worked')} style={styles.button}>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('WishList')} style={styles.button}>
                     <Text style={styles.btnText}>Add Item</Text>
                 </TouchableOpacity>
             </ScrollView>
