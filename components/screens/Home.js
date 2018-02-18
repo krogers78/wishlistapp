@@ -16,7 +16,7 @@ export default class Home extends Component {
                 {/* Flat list */}
                 
                 <ScrollView style={styles.bottom}>
-                    <Wishlists navigation={this.props.navigation} />
+                    <Wishlists navigation={this.props.navigation} {...this.props} />
                     <Suggested />                    
                 </ScrollView>
             </View>
