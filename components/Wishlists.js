@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import Heading from './typography/Heading';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { MaterialCommunityIcons } from '@expo/vector-icons'
 import Suggested from './Suggested';
 
 export default class Wishlists extends Component {
@@ -12,7 +12,7 @@ export default class Wishlists extends Component {
                 <Heading text="Wish List" />
 
                 <TouchableOpacity style={styles.group} onPress={() => this.props.navigation.navigate('WishList')}>
-                    <Icon
+                    <MaterialCommunityIcons
                         name='star-circle'
                         size={80}
                         color='#6AB4FF'

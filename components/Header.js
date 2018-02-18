@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, Button, Platform, TouchableOpacity } from 'react-native';
 
 // Bringing in the icons to use
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { MaterialIcons } from '@expo/vector-icons'
+
 
 export default class Header extends Component {
     render() {
         return (
             <View style={styles.bg}>
                 <TouchableOpacity onPress={() => this.props.navigation.navigate('DrawerOpen')}>
-                    <Icon
+                    <MaterialIcons
                         name='menu'
                         size={40}
                         color='#f8f8f8'
@@ -18,7 +19,7 @@ export default class Header extends Component {
 
                 <Text style={styles.text}>{this.props.title}</Text>
                 <TouchableOpacity onPress={() => this.props.navigation.navigate('AddItem')}>
-                    <Icon
+                    <MaterialIcons
                         name='add'
                         size={40}
                         color='#f8f8f8'

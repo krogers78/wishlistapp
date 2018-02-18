@@ -5,7 +5,6 @@ import { DrawerNavigator } from 'react-navigation';
 // Bringing in the icons to use
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-
 import Home from './components/screens/Home';
 import AddItem from './components/screens/AddItem';
 import SingleList from './components/screens/SingleList';
