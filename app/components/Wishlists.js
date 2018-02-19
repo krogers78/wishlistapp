@@ -3,18 +3,18 @@ import { StyleSheet, Text, TouchableOpacity, View, FlatList } from 'react-native
 
 import Heading from './typography/Heading';
 import { MaterialCommunityIcons } from '@expo/vector-icons'
-import Suggested from './Suggested';
 
 export default class Wishlists extends Component {
     render() {
-        return(
+        const { lists } = this.props.wishlists;
+        return (
             <View>
                 <Heading text="Wish List" />
                 <FlatList
-                    data={this.props.screenProps}
+                    data={lists[0]}
                     keyExtractor={(x, i) => i}
                     style={styles.bottom}
-                    renderItem={({ item }) => 
+                    renderItem={({ item }) =>
                         <View>
                             <TouchableOpacity style={styles.group} onPress={() => this.props.navigation.navigate('WishList')}>
                                 <MaterialCommunityIcons

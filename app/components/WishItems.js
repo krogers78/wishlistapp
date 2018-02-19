@@ -17,9 +17,10 @@ export default class WishItems extends Component {
         }
     }
     render() {
-        return(
+        const { lists } = this.props.wishlists
+        return (
             <FlatList
-                data={this.props.screenProps}
+                data={lists[0]}
                 keyExtractor={(x, i) => i}
                 style={styles.bottom}
                 renderItem={({ item }) => item.items.map((e, k) =>

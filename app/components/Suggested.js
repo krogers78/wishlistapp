@@ -6,9 +6,9 @@ import Heading from './typography/Heading';
 
 export default class Suggested extends Component {
     render() {
-        return(
+        return (
             <View>
-                <Heading text="Suggestions" />                
+                <Heading text="Suggestions" />
                 {/* Separate each item. WILL LATER BE A LOOP */}
                 {/* Make a Component */}
                 <View style={styles.fl}>
