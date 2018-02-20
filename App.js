@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { DrawerNavigator } from 'react-navigation';
-import store from './app/store';
+import store from './app/redux/store';
 
 import Index from './app/containers/Index';
 import AddItem from './app/containers/AddItem';
 import SingleList from './app/containers/SingleList';
+import Security from './app/components/Security';
 
 export default class App extends Component {
   render() {
@@ -20,5 +21,5 @@ const MyApp = DrawerNavigator({
   Home: { screen: Index },
   AddItem: { screen: AddItem },
   WishList: { screen: SingleList },
-  // Security: { screen: Security },
+  Security: { screen: Security },
 });

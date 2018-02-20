@@ -5,12 +5,12 @@ import WishItems from '../components/WishItems';
 import Header from '../components/Header';
 
 class SingleList extends Component {
-
     render() {
+        const { title } = this.props.navigation.state.params
         return (
             <View>
                 {/* Header Component */}
-                <Header navigation={this.props.navigation} title="General List" />
+                <Header navigation={this.props.navigation} title={`${title} List`} />
                 <WishItems {...this.props} />
             </View>
         )

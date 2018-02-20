@@ -4,9 +4,8 @@ export function populateLists(lists) {
         payload: lists
     }
 }
-export function setLoaded(loaded) {
+export function setLoaded() {
     return {
-        type: "FINISHED",
-        payload: loaded
+        type: "FINISHED"
     }
 }

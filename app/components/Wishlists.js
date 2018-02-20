@@ -14,9 +14,12 @@ export default class Wishlists extends Component {
                     data={lists[0]}
                     keyExtractor={(x, i) => i}
                     style={styles.bottom}
-                    renderItem={({ item }) =>
+                    renderItem={({ item, index }) =>
                         <View>
-                            <TouchableOpacity style={styles.group} onPress={() => this.props.navigation.navigate('WishList')}>
+                            <TouchableOpacity style={styles.group} onPress={() => this.props.navigation.navigate('WishList', 
+                                                                                                                 { items: lists[0][index], 
+                                                                                                                   title: lists[0][index].name 
+                                                                                                                 })}>
                                 <MaterialCommunityIcons
                                     name='star-circle'
                                     size={80}

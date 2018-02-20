@@ -12,7 +12,7 @@ const wishlistReducer = (state = {
         case "FINISHED":
             state = {
                 ...state,
-                loaded: action.payload
+                loaded: true
             }
             break;
     }

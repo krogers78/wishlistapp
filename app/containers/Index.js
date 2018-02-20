@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View , ScrollView} from 'react-native';
 import { connect } from 'react-redux';
 
-import { populateLists, setLoaded } from '../actions/wishlistActions';
+import { populateLists, setLoaded } from '../redux/actions';
 
 import Header from '../components/Header';
 import Wishlists from '../components/Wishlists';
@@ -20,10 +20,10 @@ class Index extends Component {
 
     const response = await fetch(apiUrl, options);
     const json = await response.json();
-    // console.log(json)
+
     this.setState({ items: json, loaded: true })
     this.props.setLists(json)
-    this.props.setFinished(true)
+    this.props.setFinished()
   }
 
   render() {
@@ -32,7 +32,7 @@ class Index extends Component {
         <View >
           {/* Header Component */}
           <Header navigation={this.props.navigation} title="Home" />
-
+          
           <ScrollView style={styles.bottom}>
             <Wishlists {...this.props} />
             <Suggested />
@@ -51,10 +51,11 @@ class Index extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: '#EDEDED'
   },
+  bottom: {
+    marginBottom: 60
+  }
 });
 
 const mapStateToProps = state => {
@@ -67,8 +68,8 @@ const mapDispatchToProps = dispatch => {
         setLists: lists => {
           dispatch(populateLists(lists));
         },
-        setFinished: loaded => {
-          dispatch(setLoaded(loaded))
+        setFinished: () => {
+          dispatch(setLoaded())
         }
     };
 }

@@ -18,20 +18,22 @@ export default class WishItems extends Component {
     }
     render() {
         const { lists } = this.props.wishlists
+        const { items } = this.props.navigation.state.params
         return (
             <FlatList
-                data={lists[0]}
+                data={items.items}
                 keyExtractor={(x, i) => i}
                 style={styles.bottom}
-                renderItem={({ item }) => item.items.map((e, k) =>
-                    <View style={styles.fl} key={k}>
-                        <Image source={this.state.img[k]} style={styles.image} />
+                renderItem={({ item, index }) => 
+                    <View style={styles.fl} key={index}>
+                    
+                        <Image source={this.state.img[index]} style={styles.image} />
                         <View>
-                            <Descriptor text={e.title} />
-                            <Price text={e.price} />
+                            <Descriptor text={item.title} />
+                            <Price text={item.price} />
                         </View>
                     </View>
-                )}
+                }
             />
         )
     }
