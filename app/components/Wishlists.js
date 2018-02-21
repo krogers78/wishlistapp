@@ -11,14 +11,14 @@ export default class Wishlists extends Component {
             <View>
                 <Heading text="Wish List" />
                 <FlatList
-                    data={lists[0]}
+                    data={lists}
                     keyExtractor={(x, i) => i}
                     style={styles.bottom}
                     renderItem={({ item, index }) =>
                         <View>
                             <TouchableOpacity style={styles.group} onPress={() => this.props.navigation.navigate('WishList', 
-                                                                                                                 { items: lists[0][index], 
-                                                                                                                   title: lists[0][index].name 
+                                                                                                                 { items: lists[index], 
+                                                                                                                   title: lists[index].name 
                                                                                                                  })}>
                                 <MaterialCommunityIcons
                                     name='star-circle'

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View , ScrollView} from 'react-native';
+import Expo from 'expo';
+import { StyleSheet, Text, View , ScrollView, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 
 import { populateLists, setLoaded } from '../redux/actions';
@@ -41,8 +42,8 @@ class Index extends Component {
       );
     }
     return (
-      <View style={styles.container}>
-        <Text>NOT LOADED</Text>
+      <View style={[styles.notLaodedContainer, styles.horizontal]}>
+        <ActivityIndicator size="large" color="#0000ff" />
       </View>
     )
   }
@@ -55,6 +56,15 @@ const styles = StyleSheet.create({
   },
   bottom: {
     marginBottom: 60
+  },
+  notLaodedContainer: {
+    flex: 1,
+    justifyContent: 'center'
+  },
+  horizontal: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    padding: 10
   }
 });
 

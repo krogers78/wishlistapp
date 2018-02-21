@@ -6,7 +6,7 @@ const wishlistReducer = (state = {
         case "POPULATE_LISTS":
             state = {
                 ...state,
-                lists: [...state.lists, action.payload]
+                lists: action.payload
             }
             break;
         case "FINISHED":
