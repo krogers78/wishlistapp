@@ -1,42 +1,28 @@
 import React, { Component } from 'react';
-import { ScrollView, CameraRoll, TextInput, Text, StyleSheet, Platform, Image, View, Button, TouchableOpacity } from 'react-native';
+import { ScrollView, Text, StyleSheet, Platform, Image, TouchableOpacity } from 'react-native';
 import Heading from './typography/Heading';
-// import Header from './Header';
 import { reduxForm, Field } from 'redux-form';
 
 import MyTextInput from './MyTextInput';
 
 class ItemInputs extends Component {
-    _handleButtonPress = () => {
-        CameraRoll.getPhotos({
-            first: 20,
-            assetType: 'Photos',
-        })
-            .then(r => {
-                this.setState({ photos: r.edges });
-            })
-            .catch((err) => {
-                //Error Loading Images
-            });
-    };
-
     render() {
         const submit = values => {
-            console.log('submitting form', values)
-            fetch('http://localhost:3000/api/add-item', {
-                method: 'POST',
-                headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(values),
-            });
-            this.props.navigation.navigate('WishList', { title: values.title });
+            // console.log('submitting form', values)
+            // fetch('http://localhost:3000/api/add-item', {
+            //     method: 'POST',
+            //     headers: {
+            //         Accept: 'application/json',
+            //         'Content-Type': 'application/json',
+            //     },
+            //     body: JSON.stringify(values),
+            // });
+            // this.props.navigation.navigate('WishList', { title: values.title });
+            console.log('submit');
         }
         const { handleSubmit } = this.props;
         return (
             <ScrollView style={styles.bottom}>
-                <Button title="Load Images" onPress={this._handleButtonPress} />
                 {/* TITLE */}
                 <Heading text="Title" />
                 <Field
@@ -115,4 +101,16 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     }
 })
-export default reduxForm({ form: 'addItem' })(ItemInputs);
+
+const validate = values => {
+    const errors = {};
+    console.log(values)
+    if (!values.price) {
+        errors.price = 'Price is required';
+        console.log("FuCKIN ERRORS", errors)
+    }
+    
+    return errors;
+}
+
+export default reduxForm({ form: 'addItem', validate })(ItemInputs);

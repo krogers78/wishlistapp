@@ -1,11 +1,8 @@
-export function populateLists(lists) {
-    return {
+export const populateLists = () => async dispatch => {
+    const response = await fetch('http://kloerogers.com/api/list', { method: 'GET' });
+    const json = await response.json();
+    await dispatch({
         type: "POPULATE_LISTS",
-        payload: lists
-    }
-}
-export function setLoaded() {
-    return {
-        type: "FINISHED"
-    }
+        payload: json
+    });
 }
