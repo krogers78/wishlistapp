@@ -1,1 +1,1 @@
-export * from './wishlistActions';
+export * from './dataActions';

@@ -1,8 +1,10 @@
 import React from 'react';
 import { Button, Image, View } from 'react-native';
 import { ImagePicker } from 'expo';
+import { connect } from 'react-redux';
+import { imageSet } from '../redux/actions'
 
-export default class MyImagePicker extends React.Component {
+class MyImagePicker extends React.Component {
     state = {
         image: null,
     };
@@ -23,15 +25,27 @@ export default class MyImagePicker extends React.Component {
     }
 
     _pickImage = async () => {
-        let result = await ImagePicker.launchImageLibraryAsync({
-            allowsEditing: true,
-            // aspect: [4, 3],
-        });
+        let result = await ImagePicker.launchImageLibraryAsync();
 
         console.log(result);
 
         if (!result.cancelled) {
             this.setState({ image: result.uri });
+            this.props.setImage(result.uri);
         }
     };
 }
+
+const mapStateToProps = state => {
+    return {
+        data: state.data
+    };
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        setImage: image => {
+            dispatch(imageSet(image));
+        }
+    };
+}
+export default connect(mapStateToProps, mapDispatchToProps)(MyImagePicker);

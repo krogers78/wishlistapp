@@ -6,7 +6,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 export default class Wishlists extends Component {
     render() {
-        const { lists } = this.props.wishlists;
+        const { lists } = this.props.data;
         return (
             <View>
                 <Heading text="Wish List" />

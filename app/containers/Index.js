@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View , ScrollView, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
-import { populateLists } from '../redux/actions';
+import { populateLists, suggested } from '../redux/actions';
 
 import Header from '../components/Header';
 import Wishlists from '../components/Wishlists';
@@ -12,20 +12,19 @@ import MyImagePicker from '../components/MyImagePicker';
 class Index extends Component {
 
   componentWillMount() {
-    this.props.setLists();
+    this.props.getData();
   }
 
   render() {
-    if (this.props.wishlists.loaded) {
+    if (this.props.data.loaded) {
       return (
         <View >
           {/* Header Component */}
           <Header navigation={this.props.navigation} title="Home" />
-          <MyImagePicker />
           
           <ScrollView style={styles.bottom}>
             <Wishlists {...this.props} />
-            <Suggested />
+            <Suggested {...this.props} />
           </ScrollView>
         </View>
       );
@@ -44,7 +43,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#EDEDED'
   },
   bottom: {
-    marginBottom: 60
+    marginBottom: 70
   },
   notLaodedContainer: {
     flex: 1,
@@ -59,13 +58,14 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
     return {
-        wishlists: state.wishlists
+        data: state.data
     };
 }
 const mapDispatchToProps = dispatch => {
     return {
-        setLists: () => {
+        getData: () => {
           dispatch(populateLists());
+          // dispatch(suggested());
         }
     };
 }

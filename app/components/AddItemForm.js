@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { ScrollView, Text, StyleSheet, Platform, Image, TouchableOpacity } from 'react-native';
 import Heading from './typography/Heading';
 import { reduxForm, Field } from 'redux-form';
-
 import MyTextInput from './MyTextInput';
+import MyImagePicker from './MyImagePicker';
 
-class ItemInputs extends Component {
+
+class AddItemForm extends Component {
     render() {
         const submit = values => {
             // console.log('submitting form', values)
@@ -33,7 +34,8 @@ class ItemInputs extends Component {
                 />
                 {/* IMAGE NEED TO FIGURE OUT IMAGE UPLOAD */}
                 <Heading text="Image" />
-                <Image source={require('../assets/images/bobross.jpg')} style={styles.image} />
+                {/* <Image source={require('../assets/images/bobross.jpg')} style={styles.image} /> */}
+                <MyImagePicker />
                 {/* PRICE */}
                 <Heading text="Price" />
                 <Field
@@ -104,13 +106,24 @@ const styles = StyleSheet.create({
 
 const validate = values => {
     const errors = {};
+    const validateCurrency = price => {
+        const currency = /^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9][0-9])?$/;
+        return currency.test(price);
+    }
     console.log(values)
+    if (!values.title) {
+        errors.title = "Title is required";
+    }
     if (!values.price) {
         errors.price = 'Price is required';
-        console.log("FuCKIN ERRORS", errors)
     }
-    
+    if (!values.list) {
+        errors.list = "List is required";
+    }
+    if (!validateCurrency(values.price)) {
+        errors.price = "Not a valid price format";
+    }
     return errors;
 }
 
-export default reduxForm({ form: 'addItem', validate })(ItemInputs);
+export default reduxForm({ form: 'addItem', validate })(AddItemForm);

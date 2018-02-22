@@ -17,8 +17,8 @@ export default class WishItems extends Component {
         }
     }
     render() {
-        const { lists } = this.props.wishlists
         const { items } = this.props.navigation.state.params
+        console.log('FUCKING', this.props)
         return (
             <FlatList
                 data={items.items}

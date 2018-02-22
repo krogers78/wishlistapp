@@ -19,7 +19,7 @@ class SingleList extends Component {
 
 const mapStateToProps = state => {
     return {
-        wishlists: state.wishlists
+        data: state.data
     };
 }
 

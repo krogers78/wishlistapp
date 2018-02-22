@@ -19,9 +19,9 @@ export default class App extends Component {
   const { CAMERA_ROLL, Permissions } = Expo;
   const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
   if (status === 'granted') {
-    return console.log('yep')
+    return console.log('Storage permission granted')
   } else {
-    throw new Error('Location permission not granted');
+    throw new Error('Storage permission not granted');
   }
 }
   render() {

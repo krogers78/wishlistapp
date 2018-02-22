@@ -1,8 +1,8 @@
 import  { combineReducers } from 'redux';
-import wishlists from './wishlistreducer';
+import data from './datareducer';
 import { reducer as formReducer } from 'redux-form'
 
 export default combineReducers({
-    wishlists,
+    data,
     form: formReducer
 });

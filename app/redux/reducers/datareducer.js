@@ -1,6 +1,8 @@
-const wishlistReducer = (state = {
+const dataReducer = (state = {
     lists: [],
-    loaded: false
+    loaded: false,
+    suggested: [],
+    image: {}
 }, action) => {
     switch (action.type) {
         case "POPULATE_LISTS":
@@ -10,14 +12,20 @@ const wishlistReducer = (state = {
                 loaded: true
             }
             break;
-        case "FINISHED":
+        case "POPULATE_SUGGESTED":
             state = {
                 ...state,
-                loaded: true
+                suggested: action.payload
+            }
+            break;
+        case "SET_IMAGE":
+            state = {
+                ...state,
+                image: action.payload
             }
             break;
     }
     return state;
 }
 
-export default wishlistReducer;
+export default dataReducer;
