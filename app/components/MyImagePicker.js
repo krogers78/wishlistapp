@@ -1,41 +1,32 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Button, Image, View } from 'react-native';
 import { ImagePicker } from 'expo';
 import { connect } from 'react-redux';
 import { imageSet } from '../redux/actions'
 
-class MyImagePicker extends React.Component {
-    state = {
-        image: null,
-    };
-
+class MyImagePicker extends Component {
     render() {
-        let { image } = this.state;
-
+        let { image } = this.props.data;
         return (
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                 <Button
                     title="Pick an image from camera roll"
                     onPress={this._pickImage}
                 />
-                {image &&
-                    <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
+                {image.exists && <Image source={{ uri: `data:image/png;base64,${image.url}` }} style={{ width: 200, height: 200 }} />}
             </View>
         );
     }
-
     _pickImage = async () => {
-        let result = await ImagePicker.launchImageLibraryAsync();
-
-        console.log(result);
-
+        let result = await ImagePicker.launchImageLibraryAsync({
+            base64: true,
+            allowsEditing: true
+        });
         if (!result.cancelled) {
-            this.setState({ image: result.uri });
-            this.props.setImage(result.uri);
+            this.props.setImage(result.base64);
         }
     };
 }
-
 const mapStateToProps = state => {
     return {
         data: state.data

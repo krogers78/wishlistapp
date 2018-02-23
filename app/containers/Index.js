@@ -65,7 +65,7 @@ const mapDispatchToProps = dispatch => {
     return {
         getData: () => {
           dispatch(populateLists());
-          // dispatch(suggested());
+          dispatch(suggested());
         }
     };
 }

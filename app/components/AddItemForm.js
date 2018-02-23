@@ -2,23 +2,26 @@ import React, { Component } from 'react';
 import { ScrollView, Text, StyleSheet, Platform, Image, TouchableOpacity } from 'react-native';
 import Heading from './typography/Heading';
 import { reduxForm, Field } from 'redux-form';
+import { connect } from 'react-redux';
 import MyTextInput from './MyTextInput';
 import MyImagePicker from './MyImagePicker';
-
 
 class AddItemForm extends Component {
     render() {
         const submit = values => {
-            // console.log('submitting form', values)
-            // fetch('http://localhost:3000/api/add-item', {
-            //     method: 'POST',
-            //     headers: {
-            //         Accept: 'application/json',
-            //         'Content-Type': 'application/json',
-            //     },
-            //     body: JSON.stringify(values),
-            // });
-            // this.props.navigation.navigate('WishList', { title: values.title });
+            const newData = {
+                ...values,
+                image: this.props.data.image.url
+            }
+            fetch('http://kloerogers.com/api/add-item', {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(newData),
+            });
+            this.props.data.image = {};
             console.log('submit');
         }
         const { handleSubmit } = this.props;
@@ -32,9 +35,8 @@ class AddItemForm extends Component {
                     style={styles.input}
                     placeholder={"Harry Potter and the Chamber of Secrets"}
                 />
-                {/* IMAGE NEED TO FIGURE OUT IMAGE UPLOAD */}
+                {/* IMAGE */}
                 <Heading text="Image" />
-                {/* <Image source={require('../assets/images/bobross.jpg')} style={styles.image} /> */}
                 <MyImagePicker />
                 {/* PRICE */}
                 <Heading text="Price" />
@@ -110,7 +112,6 @@ const validate = values => {
         const currency = /^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9][0-9])?$/;
         return currency.test(price);
     }
-    console.log(values)
     if (!values.title) {
         errors.title = "Title is required";
     }
@@ -125,5 +126,11 @@ const validate = values => {
     }
     return errors;
 }
+const mapStateToProps = state => {
+    return {
+        data: state.data
+    };
+}
 
+AddItemForm = connect(mapStateToProps)(AddItemForm);
 export default reduxForm({ form: 'addItem', validate })(AddItemForm);

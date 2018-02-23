@@ -21,7 +21,10 @@ const dataReducer = (state = {
         case "SET_IMAGE":
             state = {
                 ...state,
-                image: action.payload
+                image: {
+                    url: action.payload,
+                    exists: true
+                }
             }
             break;
     }

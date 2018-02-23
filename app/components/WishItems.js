@@ -18,7 +18,7 @@ export default class WishItems extends Component {
     }
     render() {
         const { items } = this.props.navigation.state.params
-        console.log('FUCKING', this.props)
+       
         return (
             <FlatList
                 data={items.items}
@@ -26,8 +26,7 @@ export default class WishItems extends Component {
                 style={styles.bottom}
                 renderItem={({ item, index }) => 
                     <View style={styles.fl} key={index}>
-                    
-                        <Image source={this.state.img[index]} style={styles.image} />
+                        <Image source={{ uri: `data:image/jpg;base64,${item.image}` }} style={styles.image} />
                         <View>
                             <Descriptor text={item.title} />
                             <Price text={item.price} />
