@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View, FlatList } from 'react-native';
-
 import Heading from './typography/Heading';
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 
@@ -15,26 +14,21 @@ export default class Wishlists extends Component {
                     keyExtractor={(x, i) => i}
                     style={styles.bottom}
                     renderItem={({ item, index }) =>
-                        <View>
-                            <TouchableOpacity style={styles.group} onPress={() => this.props.navigation.navigate('WishList', 
-                                                                                                                 { items: lists[index], 
-                                                                                                                   title: lists[index].name 
-                                                                                                                 })}>
-                                <MaterialCommunityIcons
-                                    name='star-circle'
-                                    size={80}
-                                    color='#6AB4FF'
-                                />
-                                <Text style={styles.list}>{item.name}</Text>
-                            </TouchableOpacity>
-                        </View>
+                        <TouchableOpacity style={styles.group} 
+                                          onPress={() => this.props.navigation.navigate('WishList',  { items: lists[index],  title: lists[index].name })}>
+                            <MaterialCommunityIcons
+                                name='star-circle'
+                                size={80}
+                                color='#6AB4FF'
+                            />
+                            <Text style={styles.list}>{item.name}</Text>
+                        </TouchableOpacity>
                     }
                 />
             </View>
         )
     }
 }
-
 const styles = StyleSheet.create({
     group: {
         flexDirection: 'row',

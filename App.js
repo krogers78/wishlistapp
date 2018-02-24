@@ -34,7 +34,7 @@ export default class App extends Component {
 }
 const MyApp = DrawerNavigator({
   Home: { screen: Index },
-  AddItem: { screen: AddItem },
   WishList: { screen: SingleList },
+  AddItem: { screen: AddItem },
   Security: { screen: Security },
 });

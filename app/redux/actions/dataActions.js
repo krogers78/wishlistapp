@@ -20,4 +20,9 @@ export function imageSet(image) {
         payload: image
     }
 }
-
+export function setRefresh(refresh) {
+    return {
+        type: "REFRESHING",
+        payload: refresh
+    }
+}

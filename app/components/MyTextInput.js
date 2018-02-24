@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextInput, View, Text } from 'react-native';
+import { TextInput, View, Text, StyleSheet } from 'react-native';
 
 export default function MyTextInput(props) {
     const { input, meta: { touched, error }, ...inputProps } = props;
@@ -11,8 +11,24 @@ export default function MyTextInput(props) {
                 onBlur={input.onBlur}
                 onFocus={input.onFocus}
                 value={input.value}
+                style={styles.input}
+                underlineColorAndroid='transparent'
             />
-            {touched && (error && <Text>{error}</Text>)}
+            {touched && (error && <Text style={styles.error}>{error}</Text>)}
         </View>
     );
 }
+const styles = StyleSheet.create({
+    input: {
+        borderBottomWidth: 1,
+        marginHorizontal: 20,
+        paddingBottom: 10,
+        fontSize: 20
+    },
+    error: {
+        marginHorizontal: 20,
+        marginTop: 5,
+        color: 'red',
+        fontWeight: 'bold'
+    }
+});

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, Text, StyleSheet, Platform, Image, TouchableOpacity } from 'react-native';
+import { ScrollView, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import Heading from './typography/Heading';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
@@ -22,6 +22,7 @@ class AddItemForm extends Component {
                 body: JSON.stringify(newData),
             });
             this.props.data.image = {};
+            this.props.navigation.navigate('Home');
             console.log('submit');
         }
         const { handleSubmit } = this.props;
@@ -32,7 +33,6 @@ class AddItemForm extends Component {
                 <Field
                     name={'title'}
                     component={MyTextInput}
-                    style={styles.input}
                     placeholder={"Harry Potter and the Chamber of Secrets"}
                 />
                 {/* IMAGE */}
@@ -43,7 +43,6 @@ class AddItemForm extends Component {
                 <Field
                     name={'price'}
                     component={MyTextInput}
-                    style={styles.input}
                     placeholder={"$10.99"}
                     keyboardType={"numeric"}
                 />
@@ -52,7 +51,6 @@ class AddItemForm extends Component {
                 <Field
                     name={'location'}
                     component={MyTextInput}
-                    style={styles.input}
                     placeholder={"Amazon"}
                 />
                 {/* LIST */}
@@ -60,7 +58,6 @@ class AddItemForm extends Component {
                 <Field
                     name={'list'}
                     component={MyTextInput}
-                    style={styles.input}
                     placeholder={"General"}
                 />
                 {/* BUTTON */}
@@ -73,22 +70,6 @@ class AddItemForm extends Component {
 }
 
 const styles = StyleSheet.create({
-    input: {
-        ...Platform.select({
-            ios: {
-                borderBottomWidth: 1,
-            }
-        }),
-        marginHorizontal: 20,
-        paddingBottom: 10,
-        fontSize: 20
-    },
-    image: {
-        width: 180,
-        height: 220,
-        alignSelf: 'center',
-        resizeMode: 'contain',
-    },
     bottom: {
         marginBottom: 100
     },

@@ -1,28 +1,33 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View , ScrollView, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, View , ScrollView, ActivityIndicator, RefreshControl } from 'react-native';
 import { connect } from 'react-redux';
-import { populateLists, suggested } from '../redux/actions';
-
+import { populateLists, suggested, setRefresh } from '../redux/actions';
 import Header from '../components/Header';
 import Wishlists from '../components/Wishlists';
 import Suggested from '../components/Suggested';
 
-import MyImagePicker from '../components/MyImagePicker';
-
 class Index extends Component {
-
   componentWillMount() {
-    this.props.getData();
+    this._onRefresh();
   }
-
+  async _onRefresh() {
+    await this.props.refreshing(true);
+    await this.props.getData();
+    await this.props.refreshing(false);    
+  }
   render() {
     if (this.props.data.loaded) {
       return (
-        <View >
+        <View>
           {/* Header Component */}
           <Header navigation={this.props.navigation} title="Home" />
           
-          <ScrollView style={styles.bottom}>
+          <ScrollView refreshControl={
+            <RefreshControl
+              refreshing={this.props.data.refreshing}
+              onRefresh={this._onRefresh.bind(this)}
+            />
+          } style={styles.bottom}>
             <Wishlists {...this.props} />
             <Suggested {...this.props} />
           </ScrollView>
@@ -36,7 +41,6 @@ class Index extends Component {
     )
   }
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -55,7 +59,6 @@ const styles = StyleSheet.create({
     padding: 10
   }
 });
-
 const mapStateToProps = state => {
     return {
         data: state.data
@@ -66,6 +69,9 @@ const mapDispatchToProps = dispatch => {
         getData: () => {
           dispatch(populateLists());
           dispatch(suggested());
+        },
+        refreshing: refresh => {
+          dispatch(setRefresh(refresh));
         }
     };
 }

@@ -1,21 +1,9 @@
 import React, { Component } from 'react';
 import { View, Image, StyleSheet, FlatList } from 'react-native';
-
 import Descriptor from './typography/Descriptor';
 import Price from './typography/Price';
 
 export default class WishItems extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            img: [
-                require('../assets/images/bobross.jpg'),
-                require('../assets/images/dracomalfoy.jpg'),
-                require('../assets/images/bobross2.jpg'),
-                require('../assets/images/switch.jpg'),
-            ]
-        }
-    }
     render() {
         const { items } = this.props.navigation.state.params
        

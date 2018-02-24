@@ -2,7 +2,8 @@ const dataReducer = (state = {
     lists: [],
     loaded: false,
     suggested: [],
-    image: {}
+    image: {},
+    refreshing: false,
 }, action) => {
     switch (action.type) {
         case "POPULATE_LISTS":
@@ -25,6 +26,12 @@ const dataReducer = (state = {
                     url: action.payload,
                     exists: true
                 }
+            }
+            break;
+        case "REFRESHING":
+            state = {
+                ...state,
+                refreshing: action.payload
             }
             break;
     }
